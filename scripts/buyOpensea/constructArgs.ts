@@ -1,4 +1,3 @@
-
 // @notice constructs the amount that needs to be paid to the opensea fullfillBasicOrder function
 // and the parameters needed for BasicOrderParameters
 // @param data: the data retrieved from calling the listing API from Opensea
