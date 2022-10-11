@@ -63,11 +63,10 @@ contract Empires {
             params.offerIdentifier == tokenId,
             "The specified tokenId does not match the BasicOrderParameters"
         );
-        //TODO: change that in production
-        // require(
-        //     params.offerToken == realmsContractAddress,
-        //     "The realms contract address does not match the BasicOrderParameters"
-        // );
+        require(
+            params.offerToken == realmsContractAddress,
+            "The realms contract address does not match the BasicOrderParameters"
+        );
 
         // Construct the withdrawal message's payload.
         uint256[] memory payload = new uint256[](3);
@@ -78,8 +77,8 @@ contract Empires {
         // Consume the message from the StarkNet core contract.
         // This will revert the (Ethereum) transaction if the message does not exist.
         // The message can only be consumed once.
-        //TODO: uncomment this in production
-        // starknetCore.consumeMessageFromL2(l2ContractAddress, payload);
+        //TODO: check that the amount of eth in the contract is enough before consuming the message
+        starknetCore.consumeMessageFromL2(l2ContractAddress, payload);
 
         // Buys on Opensea
         seaPort.fulfillBasicOrder{value: price}(params);
